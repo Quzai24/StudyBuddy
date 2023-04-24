@@ -3,7 +3,7 @@ package com.example.studybuddy
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.studybuddy.databinding.FragmentMainBinding
@@ -11,15 +11,18 @@ import com.example.studybuddy.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
     private var _binding : FragmentMainBinding? = null
     private val binding get() =_binding!!
-    private val tasks = listOf(Task("Do the Dishes", listOf(4,30), listOf("Saturday","Sunday")),Task("Take out the Trash", listOf(8,0), listOf("Thursday")))
+    private val tasks = listOf(
+        Task("Do the Dishes", listOf(4,30), listOf("Saturday","Sunday")),Task("Take out the trash", listOf(8,0), listOf("Thursday")))
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentMainBinding.inflate(inflater,container,false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
         setHasOptionsMenu(true)
 
+        //viewModel.tasks.observe(viewLifecycleOwner) {
         val mAdapter = TaskAdapter(tasks)
         binding.recyclerview.adapter = mAdapter
+        //}
 
         binding.profile.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToProfileFragment()

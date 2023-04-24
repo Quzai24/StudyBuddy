@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.studybuddy.databinding.FragmentStudyBinding
 
 class StudyFragment : Fragment() {
+    private var _binding : FragmentStudyBinding? = null
+    private val binding get() =_binding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        _binding = FragmentStudyBinding.inflate(inflater,container,false)
+        val rootView = binding.root
+        return rootView
     }
 }

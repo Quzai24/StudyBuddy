@@ -7,43 +7,33 @@
     tools:context=".AddFragment">
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
+        android:id="@+id/enterTask"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:hint="@string/enter_task"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTime"
+        android:paddingEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/clockTwo"
+        app:layout_constraintTop_toTopOf="@+id/clockTwo"
+        tools:ignore="RtlSymmetry" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/clockTwo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
         android:src="@drawable/clock"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/enterTask"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.120000005" />
 
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enter_time"
-        android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-    <CheckBox
+    <RadioButton
         android:id="@+id/sunday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,39 +42,12 @@
         app:layout_constraintBottom_toTopOf="@+id/monday"
         app:layout_constraintEnd_toStartOf="@+id/thursday"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime"
-        app:layout_constraintVertical_bias="0.060000002"
+        app:layout_constraintStart_toEndOf="@+id/clockTwo"
+        app:layout_constraintTop_toBottomOf="@+id/clockTwo"
+        app:layout_constraintVertical_bias="0.05"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <CheckBox
-        android:id="@+id/friday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/friday"
-        app:layout_constraintBottom_toTopOf="@+id/saturday"
-        app:layout_constraintStart_toStartOf="@+id/thursday"
-        app:layout_constraintTop_toBottomOf="@+id/thursday" />
-
-    <CheckBox
-        android:id="@+id/thursday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="@string/thursday"
-        app:layout_constraintBaseline_toBaselineOf="@+id/sunday"
-        app:layout_constraintStart_toEndOf="@+id/sunday" />
-
-    <CheckBox
-        android:id="@+id/wednesday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wednesday"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sunday"
-        app:layout_constraintTop_toBottomOf="@+id/tuesday" />
-
-    <CheckBox
+    <RadioButton
         android:id="@+id/monday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,15 +57,7 @@
         app:layout_constraintStart_toStartOf="@+id/sunday"
         app:layout_constraintTop_toBottomOf="@+id/sunday" />
 
-    <CheckBox
-        android:id="@+id/saturday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/saturday"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tuesday"
-        app:layout_constraintStart_toStartOf="@+id/thursday" />
-
-    <CheckBox
+    <RadioButton
         android:id="@+id/tuesday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,5 +66,114 @@
         app:layout_constraintBottom_toTopOf="@+id/wednesday"
         app:layout_constraintStart_toStartOf="@+id/sunday"
         app:layout_constraintTop_toBottomOf="@+id/monday" />
+
+    <RadioButton
+        android:id="@+id/wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wednesday"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/sunday"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday" />
+
+    <RadioButton
+        android:id="@+id/thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="@string/thursday"
+        app:layout_constraintBaseline_toBaselineOf="@+id/sunday"
+        app:layout_constraintStart_toEndOf="@+id/sunday" />
+
+    <RadioButton
+        android:id="@+id/friday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/friday"
+        app:layout_constraintBottom_toTopOf="@+id/saturday"
+        app:layout_constraintStart_toStartOf="@+id/thursday"
+        app:layout_constraintTop_toBottomOf="@+id/thursday" />
+
+    <RadioButton
+        android:id="@+id/saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saturday"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tuesday"
+        app:layout_constraintStart_toStartOf="@+id/thursday" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/oneOrTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wednesday"
+        app:layout_constraintVertical_bias="0.1">
+
+        <RadioButton
+            android:id="@+id/A_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weekly" />
+
+        <RadioButton
+            android:id="@+id/B_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bi_weekly" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/colon"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/clockTwo"
+        app:layout_constraintTop_toBottomOf="@+id/enterTask" />
+
+    <Spinner
+        android:id="@+id/minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/hour"
+        app:layout_constraintEnd_toStartOf="@+id/am"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/colon" />
+
+    <TextView
+        android:id="@+id/colon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon"
+        app:layout_constraintBottom_toBottomOf="@+id/hour"
+        app:layout_constraintEnd_toStartOf="@+id/minute"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/hour"
+        app:layout_constraintTop_toTopOf="@+id/hour" />
+
+    <Spinner
+        android:id="@+id/am"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/hour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/minute" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
