@@ -1,3 +1,3 @@
 package com.example.studybuddy
 
-class Task (val task: String, val time: List<Int>, val days: List<String>){}
+class Task (var task: String, var time: List<Int>, var days: List<String>, var weekly: Int, var isDismissed: Boolean,var repeat: Int){}

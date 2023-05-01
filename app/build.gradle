@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.studybuddy"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -51,4 +52,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation "androidx.fragment:fragment-ktx:1.5.5"
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation 'com.google.firebase:firebase-database-ktx'
 }

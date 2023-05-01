@@ -30,7 +30,7 @@
         android:textColor="#C6C6C6"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/study"
+        app:layout_constraintEnd_toStartOf="@+id/settings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -46,9 +46,9 @@
         android:textColor="#C6C6C6"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/achivement"
+        app:layout_constraintEnd_toStartOf="@+id/add"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/add" />
+        app:layout_constraintStart_toEndOf="@+id/profile" />
 
     <TextView
         android:id="@+id/achivement"
@@ -64,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/settings" />
+        app:layout_constraintStart_toEndOf="@+id/study" />
 
     <TextView
         android:id="@+id/study"
@@ -78,9 +78,9 @@
         android:textColor="#C6C6C6"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintEnd_toStartOf="@+id/achivement"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/profile" />
+        app:layout_constraintStart_toEndOf="@+id/add" />
 
     <ImageView
         android:id="@+id/add"
@@ -89,9 +89,9 @@
         android:background="#292929"
         android:src="@drawable/add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/settings"
+        app:layout_constraintEnd_toStartOf="@+id/study"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/study"
+        app:layout_constraintStart_toEndOf="@+id/settings"
         app:layout_constraintTop_toBottomOf="@+id/recyclerview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

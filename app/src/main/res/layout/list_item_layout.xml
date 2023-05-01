@@ -22,6 +22,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,30 +31,74 @@
 
     <TextView
         android:id="@+id/task"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/clock"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/clock"
+        app:layout_constraintVertical_chainStyle="spread_inside"
         tools:text="Wash the dishes" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/days"
+        app:layout_constraintEnd_toStartOf="@+id/week"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/clock"
         app:layout_constraintStart_toStartOf="@+id/task"
         app:layout_constraintTop_toBottomOf="@+id/task"
         tools:text="4:30 pm" />
 
     <TextView
         android:id="@+id/days"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        android:textSize="20sp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/clock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/time"
         app:layout_constraintTop_toBottomOf="@+id/time"
         tools:text="Everyday" />
+
+    <TextView
+        android:id="@+id/week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/time"
+        app:layout_constraintEnd_toStartOf="@+id/dismiss"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/time"
+        tools:text="Bi-Weekly" />
+
+    <CheckBox
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="@+id/task"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dismiss" />
+
+    <TextView
+        android:id="@+id/dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/week"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/week"
+        tools:text="Dismissed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

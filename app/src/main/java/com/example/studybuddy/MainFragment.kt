@@ -7,22 +7,26 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.studybuddy.databinding.FragmentMainBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainFragment : Fragment() {
     private var _binding : FragmentMainBinding? = null
     private val binding get() =_binding!!
-    private val tasks = listOf(
-        Task("Do the Dishes", listOf(4,30), listOf("Saturday","Sunday")),Task("Take out the trash", listOf(8,0), listOf("Thursday")))
+    private val viewModel: TaskViewModel by activityViewModels()
+    private lateinit var dbRef : DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        dbRef = Firebase.database.reference
         val rootView = binding.root
 
         setHasOptionsMenu(true)
 
-        //viewModel.tasks.observe(viewLifecycleOwner) {
-        val mAdapter = TaskAdapter(tasks)
-        binding.recyclerview.adapter = mAdapter
-        //}
+        viewModel.tasks.observe(viewLifecycleOwner) {
+            val mAdapter = TaskAdapter(it,requireContext(),viewModel)
+            binding.recyclerview.adapter = mAdapter
+        }
 
         binding.profile.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
