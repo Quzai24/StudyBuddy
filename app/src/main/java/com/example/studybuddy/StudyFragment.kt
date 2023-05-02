@@ -18,8 +18,8 @@ class StudyFragment : Fragment() {
         val rootView = binding.root
         val pomodoroAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.pomodoros, android.R.layout.simple_spinner_item)
         pomodoroAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = pomodoroAdapter
-        binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        binding.howmany.adapter = pomodoroAdapter
+        binding.howmany.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, childView: View?, position: Int, itemId: Long) {
                 numberOfPomodoros = adapterView.getItemAtPosition(position).toString().toInt()
             }

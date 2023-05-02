@@ -71,13 +71,13 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
     }
     fun getWeek(): List<String>{
         val daysOfTheWeek = mutableListOf<String>()
-        if(binding.sunday.isChecked){daysOfTheWeek.add("Sunday")}else{daysOfTheWeek.add("")}
-        if(binding.monday.isChecked){daysOfTheWeek.add("Monday")}else{daysOfTheWeek.add("")}
-        if(binding.tuesday.isChecked){daysOfTheWeek.add("Tuesday")}else{daysOfTheWeek.add("")}
-        if(binding.wednesday.isChecked){daysOfTheWeek.add("Wednesday")}else{daysOfTheWeek.add("")}
-        if(binding.thursday.isChecked){daysOfTheWeek.add("Thursday")}else{daysOfTheWeek.add("")}
-        if(binding.friday.isChecked){daysOfTheWeek.add("Friday")}else{daysOfTheWeek.add("")}
-        if(binding.saturday.isChecked){daysOfTheWeek.add("Saturday")}else{daysOfTheWeek.add("")}
+        if(binding.sunday.isChecked){daysOfTheWeek.add("Sunday")}//else{daysOfTheWeek.add("")}
+        if(binding.monday.isChecked){daysOfTheWeek.add("Monday")}//else{daysOfTheWeek.add("")}
+        if(binding.tuesday.isChecked){daysOfTheWeek.add("Tuesday")}//else{daysOfTheWeek.add("")}
+        if(binding.wednesday.isChecked){daysOfTheWeek.add("Wednesday")}//else{daysOfTheWeek.add("")}
+        if(binding.thursday.isChecked){daysOfTheWeek.add("Thursday")}//else{daysOfTheWeek.add("")}
+        if(binding.friday.isChecked){daysOfTheWeek.add("Friday")}//else{daysOfTheWeek.add("")}
+        if(binding.saturday.isChecked){daysOfTheWeek.add("Saturday")}//else{daysOfTheWeek.add("")}
 //        daysOfTheWeek.forEachIndexed { index, element ->
 //            if(index>0&&index<7){
 //                if(daysOfTheWeek)

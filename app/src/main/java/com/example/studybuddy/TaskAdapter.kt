@@ -13,7 +13,7 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
         private lateinit var currentTask : Task
         init {
             binding.root.setOnClickListener{
-                val action = MainFragmentDirections.actionMainFragmentToAlarmFragment()
+                val action = MainFragmentDirections.actionMainFragmentToAddFragment()
                 binding.root.findNavController().navigate(action)
             }
             binding.delete.setOnClickListener{

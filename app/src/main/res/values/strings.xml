@@ -34,4 +34,14 @@
     <string name="hour">1 hour</string>
     <string name="fivemin">5 min</string>
     <string name="pic">Pick a time</string>
+    <string name="about">About</string>
+    <string name="abouttext">This app will let you set alarms/reminders for tasks. As an incentive there are achievements for completing tasks that unlock profile customization options.</string>
+    <string name="achive">ACHIEVEMENTS</string>
+    <string name="visual">Visual</string>
+    <string name="darkMode">Dark mode</string>
+    <string name="funtion">Functional</string>
+    <string name="notif">Notfications while studying?</string>
+    <string name="rep">Repeat alarms?</string>
+    <string name="pomo">How many pomodoros?</string>
+    <string name="studying">STUDY</string>
 </resources>

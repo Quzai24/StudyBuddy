@@ -14,9 +14,6 @@
             android:id="@+id/action_mainFragment_to_aboutFragment"
             app:destination="@id/AboutFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_alarmFragment"
-            app:destination="@id/alarmFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
@@ -37,11 +34,6 @@
         android:name="com.example.studybuddy.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
-    <fragment
-        android:id="@+id/alarmFragment"
-        android:name="com.example.studybuddy.AlarmFragment"
-        android:label="fragment_alarm"
-        tools:layout="@layout/fragment_alarm" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.studybuddy.ProfileFragment"
