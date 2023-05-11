@@ -18,8 +18,9 @@ class MainFragment : Fragment() {
     private lateinit var dbRef : DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        dbRef = Firebase.database.reference
         val rootView = binding.root
+
+        dbRef = Firebase.database.reference
 
         setHasOptionsMenu(true)
 

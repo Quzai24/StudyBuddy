@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ClosetFragment">
+
+    <ImageView
+        android:id="@+id/person"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/personone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/personOne"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/personone"
+        app:layout_constraintBottom_toTopOf="@+id/personTwo"
+        app:layout_constraintEnd_toStartOf="@+id/personThree"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/person"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/personThree"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/personthree"
+        app:layout_constraintBottom_toBottomOf="@+id/personOne"
+        app:layout_constraintStart_toEndOf="@+id/personOne"
+        app:layout_constraintTop_toTopOf="@+id/personOne" />
+
+    <ImageView
+        android:id="@+id/personFour"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/personfour"
+        app:layout_constraintBottom_toBottomOf="@+id/personTwo"
+        app:layout_constraintEnd_toEndOf="@+id/personThree"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/personOne"
+        app:layout_constraintTop_toTopOf="@+id/personTwo" />
+
+    <ImageView
+        android:id="@+id/personTwo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/persontwo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/personOne"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/personOne"
+        app:layout_constraintTop_toBottomOf="@+id/personOne" />
+
+    <ImageView
+        android:id="@+id/eyes"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/eyesone"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintHorizontal_bias=".377"
+        app:layout_constraintVertical_bias=".334"
+        app:layout_constraintStart_toStartOf="@+id/person"
+        app:layout_constraintTop_toTopOf="@+id/person" />
+
+    <ImageView
+        android:id="@+id/eyesOne"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:src="@drawable/eyesone"
+        app:layout_constraintBottom_toTopOf="@+id/eyesThree"
+        app:layout_constraintEnd_toStartOf="@+id/eyesTwo"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/personThree"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/eyesTwo"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:src="@drawable/eyestwo"
+        app:layout_constraintBottom_toBottomOf="@+id/eyesOne"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eyesOne"
+        app:layout_constraintTop_toTopOf="@+id/eyesOne" />
+
+    <ImageView
+        android:id="@+id/eyesThree"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/eyesthree"
+        app:layout_constraintBottom_toBottomOf="@+id/personFour"
+        app:layout_constraintEnd_toStartOf="@+id/eyesFour"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/eyesOne"
+        app:layout_constraintTop_toBottomOf="@+id/eyesOne" />
+
+    <ImageView
+        android:id="@+id/eyesFour"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:src="@drawable/eyesfour"
+        app:layout_constraintBottom_toBottomOf="@+id/eyesThree"
+        app:layout_constraintEnd_toEndOf="@+id/eyesTwo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eyesThree"
+        app:layout_constraintTop_toBottomOf="@+id/eyesOne"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/enterName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        app:layout_constraintEnd_toEndOf="@+id/eyesTwo"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@+id/eyesOne"
+        app:layout_constraintTop_toTopOf="@+id/personThree" />
+
+    <Button
+        android:id="@+id/check"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:text="✔"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

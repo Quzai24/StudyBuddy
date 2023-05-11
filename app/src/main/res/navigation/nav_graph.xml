@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_profileFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_personalFragment"
+            app:destination="@id/personalFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -63,4 +66,9 @@
         android:name="com.example.studybuddy.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/personalFragment"
+        android:name="com.example.studybuddy.ClosetFragment"
+        android:label="fragment_personal"
+        tools:layout="@layout/fragment_closet" />
 </navigation>
