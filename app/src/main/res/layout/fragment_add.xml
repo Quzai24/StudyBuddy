@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".AddFragment">
+    tools:context=".screens.AddFragment">
 
     <EditText
         android:id="@+id/enterTask"

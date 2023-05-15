@@ -1,3 +1,3 @@
-package com.example.studybuddy
+package com.example.studybuddy.objects
 
 class Task (var task: String, var time: List<Int>, var days: List<String>, var weekly: Int, var isDismissed: Boolean,var repeat: Int){}

@@ -1,11 +1,15 @@
-package com.example.studybuddy
+package com.example.studybuddy.recycle
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studybuddy.R
+import com.example.studybuddy.objects.Task
+import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.ListItemLayoutBinding
+import com.example.studybuddy.screens.MainFragmentDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {

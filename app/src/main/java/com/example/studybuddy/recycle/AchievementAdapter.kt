@@ -1,8 +1,9 @@
-package com.example.studybuddy
+package com.example.studybuddy.recycle
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studybuddy.objects.Achievement
 import com.example.studybuddy.databinding.ListAchievementLayoutBinding
 
 class AchievementAdapter (val achievementList: List<Achievement>): RecyclerView.Adapter<AchievementViewHolder>() {

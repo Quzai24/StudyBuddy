@@ -1,4 +1,4 @@
-package com.example.studybuddy
+package com.example.studybuddy.screens
 
 import android.app.TimePickerDialog
 import android.icu.util.Calendar
@@ -11,6 +11,8 @@ import android.widget.SeekBar
 import android.widget.TimePicker
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.example.studybuddy.objects.Task
+import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentAddBinding
 import java.text.SimpleDateFormat
 import java.util.*

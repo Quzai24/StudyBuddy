@@ -1,4 +1,4 @@
-package com.example.studybuddy
+package com.example.studybuddy.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.example.studybuddy.recycle.AchievementAdapter
+import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentAchievementBinding
 
 class AchievementFragment : Fragment() {

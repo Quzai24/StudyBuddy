@@ -1,4 +1,4 @@
-package com.example.studybuddy
+package com.example.studybuddy.objects
 
 class Achievement (val name: String, val description: String, var unlocked: Boolean, val outfit: Outfit){
 }

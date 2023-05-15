@@ -1,4 +1,4 @@
-package com.example.studybuddy
+package com.example.studybuddy.screens
 
 import android.os.Bundle
 import android.view.*
@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.studybuddy.R
+import com.example.studybuddy.recycle.TaskAdapter
+import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentMainBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database

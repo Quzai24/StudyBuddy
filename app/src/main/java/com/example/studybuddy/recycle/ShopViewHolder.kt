@@ -1,20 +1,28 @@
-package com.example.studybuddy
+package com.example.studybuddy.recycle
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.view.View
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studybuddy.TaskViewModel
+import com.example.studybuddy.objects.Achievement
 import com.example.studybuddy.databinding.ListShopLayoutBinding
 
-class ShopViewHolder(val binding: ListShopLayoutBinding): RecyclerView.ViewHolder(binding.root) {
+class ShopViewHolder(val binding: ListShopLayoutBinding, val viewModel: TaskViewModel): RecyclerView.ViewHolder(binding.root) {
     private lateinit var currentAchievementList: List<Achievement>
 
     init{
-        val lamb: (View)-> Unit = {view->
-
-        }
-        binding.dripone.setOnClickListener(lamb)
+        val lamb: (View, Int)-> Unit = {view, num->
+            if(currentAchievementList[num].unlocked){
+                if(currentAchievementList[num].outfit.type == "hat")
+                    viewModel.setFit(currentAchievementList[num].outfit,3)
+                else if (currentAchievementList[num].outfit.type == "shirt")
+                    viewModel.setFit(currentAchievementList[num].outfit,4)
+                else if (currentAchievementList[num].outfit.type == "jacket")
+                    viewModel.setFit(currentAchievementList[num].outfit,5) }}
+        binding.dripone.setOnClickListener { lamb(binding.dripone,0) }
+        binding.driptwo.setOnClickListener{ lamb(binding.driptwo,1) }
+        binding.dripthree.setOnClickListener{ lamb(binding.dripthree,2) }
     }
 
     fun bindShop(achievementList: List<Achievement>){

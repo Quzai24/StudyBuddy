@@ -1,8 +1,9 @@
-package com.example.studybuddy
+package com.example.studybuddy.recycle
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studybuddy.objects.Achievement
 import com.example.studybuddy.databinding.ListAchievementLayoutBinding
 
 

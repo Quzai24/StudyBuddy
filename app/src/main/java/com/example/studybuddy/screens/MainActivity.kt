@@ -1,8 +1,9 @@
-package com.example.studybuddy
+package com.example.studybuddy.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.studybuddy.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

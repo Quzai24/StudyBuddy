@@ -1,17 +1,17 @@
-package com.example.studybuddy
+package com.example.studybuddy.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.studybuddy.databinding.FragmentSettingsBinding
+import com.example.studybuddy.databinding.FragmentAboutBinding
 
-class SettingsFragment : Fragment() {
-    private var _binding : FragmentSettingsBinding? = null
+class AboutFragment : Fragment() {
+    private var _binding : FragmentAboutBinding? = null
     private val binding get() =_binding!!
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentSettingsBinding.inflate(inflater,container,false)
+        _binding = FragmentAboutBinding.inflate(inflater,container,false)
         val rootView = binding.root
         return rootView
     }

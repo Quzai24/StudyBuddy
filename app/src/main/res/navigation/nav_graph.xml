@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.studybuddy.MainFragment"
+        android:name="com.example.studybuddy.screens.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -31,12 +31,12 @@
     </fragment>
     <fragment
         android:id="@+id/AboutFragment"
-        android:name="com.example.studybuddy.AboutFragment"
+        android:name="com.example.studybuddy.screens.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.studybuddy.ProfileFragment"
+        android:name="com.example.studybuddy.screens.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -48,27 +48,27 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.studybuddy.SettingsFragment"
+        android:name="com.example.studybuddy.screens.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/studyFragment"
-        android:name="com.example.studybuddy.StudyFragment"
+        android:name="com.example.studybuddy.screens.StudyFragment"
         android:label="fragment_study"
         tools:layout="@layout/fragment_study" />
     <fragment
         android:id="@+id/achievementFragment"
-        android:name="com.example.studybuddy.AchievementFragment"
+        android:name="com.example.studybuddy.screens.AchievementFragment"
         android:label="fragment_achievement"
         tools:layout="@layout/fragment_achievement" />
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.studybuddy.AddFragment"
+        android:name="com.example.studybuddy.screens.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/personalFragment"
-        android:name="com.example.studybuddy.ClosetFragment"
+        android:name="com.example.studybuddy.screens.ClosetFragment"
         android:label="fragment_personal"
         tools:layout="@layout/fragment_closet" />
 </navigation>

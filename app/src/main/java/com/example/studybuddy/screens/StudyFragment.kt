@@ -1,4 +1,4 @@
-package com.example.studybuddy
+package com.example.studybuddy.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.example.studybuddy.R
 import com.example.studybuddy.databinding.FragmentStudyBinding
 
 class StudyFragment : Fragment() {
@@ -16,7 +17,8 @@ class StudyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentStudyBinding.inflate(inflater,container,false)
         val rootView = binding.root
-        val pomodoroAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.pomodoros, android.R.layout.simple_spinner_item)
+        val pomodoroAdapter = ArrayAdapter.createFromResource(requireContext(),
+            R.array.pomodoros, android.R.layout.simple_spinner_item)
         pomodoroAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.howmany.adapter = pomodoroAdapter
         binding.howmany.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
