@@ -52,7 +52,6 @@ class ProfileFragment : Fragment() {
         binding.shirtOverlay.setOnClickListener(lamb)
         binding.jacketOverlay.setOnClickListener(lamb)
         binding.back.setOnClickListener{
-            viewModel.stop=true
             rootView.findNavController().navigateUp()
         }
         return rootView

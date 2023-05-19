@@ -10,9 +10,8 @@ import com.example.studybuddy.R
 import com.example.studybuddy.recycle.TaskAdapter
 import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentMainBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.example.studybuddy.objects.Task
+import com.google.firebase.database.*
 
 class MainFragment : Fragment() {
     private var _binding : FragmentMainBinding? = null
@@ -23,14 +22,9 @@ class MainFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
-        dbRef = Firebase.database.reference
-
         setHasOptionsMenu(true)
 
-        viewModel.tasks.observe(viewLifecycleOwner) {
-            val mAdapter = TaskAdapter(it,requireContext(),viewModel)
-            binding.recyclerview.adapter = mAdapter
-        }
+        getAlarms()
 
         binding.profile.setOnClickListener{
             val action = MainFragmentDirections.actionMainFragmentToProfileFragment()
@@ -53,6 +47,22 @@ class MainFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
         return rootView
+    }
+
+    private fun getAlarms(){
+        dbRef = FirebaseDatabase.getInstance().getReference("Alarms")
+        dbRef.addValueEventListener(object  : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(alarmSnapshot in snapshot.children){
+                        val alarm = alarmSnapshot.getValue(Task::class.java)
+                        if(!viewModel.isIn(alarm!!))
+                            viewModel.addTask(alarm)
+                    }
+                    val mAdapter = TaskAdapter(viewModel.tasks.value!!,requireContext(),viewModel)
+                    binding.recyclerview.adapter = mAdapter
+                }
+            }override fun onCancelled(error: DatabaseError) {} })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

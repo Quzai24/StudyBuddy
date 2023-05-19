@@ -20,10 +20,7 @@ class TaskViewModel: ViewModel() {
         Outfit(R.drawable.hatone,R.drawable.hatoverlayone,"greenHat","hat"),
         Outfit(R.drawable.shirtone,R.drawable.shirtoverlayone,"magicShirt","shirt"),
         Outfit(R.drawable.jacketone,R.drawable.jacketoverlayone,"redJacket","jacket"))
-    private val _tasks: MutableLiveData<MutableList<Task>> = MutableLiveData(mutableListOf(
-        Task("Do the Dishes", listOf(16,30), listOf("Saturday","Sunday"),1,false,10),
-        Task("Take out the trash", listOf(12,0), listOf("Thursday"),0,false,20)
-    ))
+    private val _tasks: MutableLiveData<MutableList<Task>> = MutableLiveData(mutableListOf())
     val tasks: LiveData<MutableList<Task>>
         get()= _tasks
     private val _achievementList: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
@@ -37,7 +34,6 @@ class TaskViewModel: ViewModel() {
         get()= _complete
     var name = "Study Buddy"
     private val fit = mutableListOf(outfits[0],outfits[4], Outfit(0,0,"","hair"), Outfit(0,0,"","hat"), Outfit(0,0,"","shirt"), Outfit(0,0,"","jacket"))
-    var stop = true
     fun setFit (fit: Outfit, num: Int){
         this.fit[num] = fit
     }
@@ -55,5 +51,11 @@ class TaskViewModel: ViewModel() {
     }
     fun deleteTask(task: Task){
         _tasks.value?.remove(task)
+    }
+    fun isIn(task: Task): Boolean{
+        for(t in _tasks.value!!)
+            if(t.task == task.task)
+                return true
+        return false
     }
 }

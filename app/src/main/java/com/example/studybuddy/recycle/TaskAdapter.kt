@@ -11,6 +11,7 @@ import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.ListItemLayoutBinding
 import com.example.studybuddy.screens.MainFragmentDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.database.FirebaseDatabase
 
 class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     inner class TaskViewHolder(val binding : ListItemLayoutBinding, val context: Context,val viewModel: TaskViewModel) : RecyclerView.ViewHolder(binding.root) {
@@ -29,11 +30,13 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
                         binding.dismiss.text="Dismissed"
                     }
                     .setNegativeButton("Delete") { dialog, which ->
+                        val dbRef = FirebaseDatabase.getInstance().getReference("Alarms")
+                        dbRef.child(currentTask.task).removeValue()
                         viewModel.deleteTask(currentTask)
                         notifyItemRemoved(this.position)
                     }
-                    .setNeutralButton("Nahhh"){dialog, which ->
-                    }.show()
+                    .setNeutralButton("Nahhh"){dialog, which -> }.show()
+                binding.delete.isChecked = false
             }
         }
         fun bindTask (task: Task){

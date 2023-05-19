@@ -31,7 +31,6 @@ class ClosetFragment : Fragment() {
             viewModel.name = binding.enterName.text.toString()
             viewModel.setFit(skin,0)
             viewModel.setFit(eye,1)
-            viewModel.stop=false
             rootView.findNavController().navigateUp()
         }
         return rootView
