@@ -18,7 +18,7 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
         private lateinit var currentTask : Task
         init {
             binding.root.setOnClickListener{
-                val action = MainFragmentDirections.actionMainFragmentToAddFragment()
+                val action = MainFragmentDirections.actionMainFragmentToAddFragment(currentTask.task)
                 binding.root.findNavController().navigate(action)
             }
             binding.delete.setOnClickListener{

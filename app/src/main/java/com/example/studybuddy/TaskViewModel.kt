@@ -20,20 +20,29 @@ class TaskViewModel: ViewModel() {
         Outfit(R.drawable.hatone,R.drawable.hatoverlayone,"greenHat","hat"),
         Outfit(R.drawable.shirtone,R.drawable.shirtoverlayone,"magicShirt","shirt"),
         Outfit(R.drawable.jacketone,R.drawable.jacketoverlayone,"redJacket","jacket"))
+
     private val _tasks: MutableLiveData<MutableList<Task>> = MutableLiveData(mutableListOf())
     val tasks: LiveData<MutableList<Task>>
         get()= _tasks
+
     private val _achievementList: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
         Achievement("Getting Started","Complete 1 Task",false,outfits[8]),
         Achievement("It's a Start","Complete 10 Task",false,outfits[9]),
         Achievement("Progress","Complete 20 Task",false,outfits[10])))
     val achievementList: LiveData<List<Achievement>>
         get() = _achievementList
+
     private val _complete: MutableLiveData<Int> = MutableLiveData(0)
     val complete: LiveData<Int>
         get()= _complete
+
     var name = "Study Buddy"
     private val fit = mutableListOf(outfits[0],outfits[4], Outfit(0,0,"","hair"), Outfit(0,0,"","hat"), Outfit(0,0,"","shirt"), Outfit(0,0,"","jacket"))
+
+    var darkMode = false
+    var studyNotifications = false
+    var repeatAlarms = false
+
     fun setFit (fit: Outfit, num: Int){
         this.fit[num] = fit
     }
@@ -47,10 +56,14 @@ class TaskViewModel: ViewModel() {
 
     }
     fun addTask(task: Task){
+        if(!repeatAlarms) {task.repeat=0}
         _tasks.value?.add(task)
     }
     fun deleteTask(task: Task){
         _tasks.value?.remove(task)
+    }
+    fun setTask(index: Int,task: Task){
+        _tasks.value?.set(index,task)
     }
     fun isIn(task: Task): Boolean{
         for(t in _tasks.value!!)

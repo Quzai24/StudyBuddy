@@ -65,7 +65,11 @@
         android:id="@+id/addFragment"
         android:name="com.example.studybuddy.screens.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <argument
+            android:name="task"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/personalFragment"
         android:name="com.example.studybuddy.screens.ClosetFragment"

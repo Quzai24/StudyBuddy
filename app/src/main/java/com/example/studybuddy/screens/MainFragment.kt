@@ -2,6 +2,7 @@ package com.example.studybuddy.screens
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -12,15 +13,32 @@ import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentMainBinding
 import com.example.studybuddy.objects.Task
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 class MainFragment : Fragment() {
     private var _binding : FragmentMainBinding? = null
     private val binding get() =_binding!!
     private val viewModel: TaskViewModel by activityViewModels()
     private lateinit var dbRef : DatabaseReference
+    private lateinit var settingsdbRef : DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val rootView = binding.root
+
+        settingsdbRef = FirebaseDatabase.getInstance().getReference("Settings")
+        settingsdbRef.addValueEventListener(object  : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    if(snapshot.child("Dark Mode").getValue<Boolean>()!!) {
+                        viewModel.darkMode = true
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    }
+                    if(snapshot.child("Repeat Alarms").getValue<Boolean>()!!){ viewModel.repeatAlarms = true }
+                    if(snapshot.child("Study Notifications").getValue<Boolean>()!!){ viewModel.studyNotifications = true }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
 
         setHasOptionsMenu(true)
 
@@ -35,7 +53,7 @@ class MainFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
         binding.add.setOnClickListener{
-            val action = MainFragmentDirections.actionMainFragmentToAddFragment()
+            val action = MainFragmentDirections.actionMainFragmentToAddFragment("")
             binding.root.findNavController().navigate(action)
         }
         binding.settings.setOnClickListener{
