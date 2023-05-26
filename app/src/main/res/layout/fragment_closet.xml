@@ -26,7 +26,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person"
+        app:layout_constraintTop_toBottomOf="@+id/enterName"
         app:layout_constraintVertical_bias="0.1"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -69,9 +69,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/person"
         app:layout_constraintEnd_toEndOf="@+id/person"
         app:layout_constraintHorizontal_bias=".377"
-        app:layout_constraintVertical_bias=".334"
         app:layout_constraintStart_toStartOf="@+id/person"
-        app:layout_constraintTop_toTopOf="@+id/person" />
+        app:layout_constraintTop_toTopOf="@+id/person"
+        app:layout_constraintVertical_bias=".334" />
 
     <ImageView
         android:id="@+id/eyesOne"
@@ -84,7 +84,6 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/personThree"
-        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <ImageView
@@ -127,13 +126,12 @@
         android:id="@+id/enterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/eyesTwo"
         app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@+id/eyesOne"
-        app:layout_constraintTop_toTopOf="@+id/personThree" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/person" />
 
     <Button
         android:id="@+id/check"
@@ -142,5 +140,74 @@
         android:text="✔"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/leftpart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/blackleftpart"
+        app:layout_constraintBottom_toBottomOf="@+id/rightpart"
+        app:layout_constraintEnd_toStartOf="@+id/middlepart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rightpart"
+        app:layout_constraintTop_toTopOf="@+id/rightpart" />
+
+    <ImageView
+        android:id="@+id/middlepart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/blackmiddlepart"
+        app:layout_constraintBottom_toBottomOf="@+id/rightpart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/leftpart"
+        app:layout_constraintTop_toTopOf="@+id/rightpart" />
+
+    <ImageView
+        android:id="@+id/pigtails"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/blackpigtails"
+        app:layout_constraintBottom_toBottomOf="@+id/longmiddlepart"
+        app:layout_constraintEnd_toStartOf="@+id/longrightpart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/longmiddlepart"
+        app:layout_constraintTop_toTopOf="@+id/longmiddlepart" />
+
+    <ImageView
+        android:id="@+id/rightpart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/blackrightpart"
+        app:layout_constraintBottom_toTopOf="@+id/longmiddlepart"
+        app:layout_constraintEnd_toStartOf="@+id/leftpart"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personFour"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/longmiddlepart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/longblackmiddlepart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pigtails"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/rightpart"
+        app:layout_constraintTop_toBottomOf="@+id/rightpart" />
+
+    <ImageView
+        android:id="@+id/longrightpart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/longblackrightpart"
+        app:layout_constraintBottom_toBottomOf="@+id/longmiddlepart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pigtails"
+        app:layout_constraintTop_toTopOf="@+id/longmiddlepart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

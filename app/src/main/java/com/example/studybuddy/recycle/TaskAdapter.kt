@@ -1,5 +1,6 @@
 package com.example.studybuddy.recycle
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +10,8 @@ import com.example.studybuddy.R
 import com.example.studybuddy.objects.Task
 import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.ListItemLayoutBinding
+import com.example.studybuddy.screens.AddFragment
 import com.example.studybuddy.screens.MainFragmentDirections
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.FirebaseDatabase
 
 class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -22,14 +23,10 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
                 binding.root.findNavController().navigate(action)
             }
             binding.delete.setOnClickListener{
-                MaterialAlertDialogBuilder(context).setTitle("Delete or Dismiss?")
-                    .setMessage("Delete or Dismiss, ${currentTask.task}")
-                    .setPositiveButton("Dismiss") { dialog, which ->
-                        currentTask.isDismissed=true
-                        binding.clock.setImageResource(R.drawable.hollow_time)
-                        binding.dismiss.text="Dismissed"
-                    }
-                    .setNegativeButton("Delete") { dialog, which ->
+                AlertDialog.Builder(context)
+                    .setTitle("Delete ${currentTask.task}?")
+                    .setMessage("Are you sure you want to delete ${currentTask.task}?")
+                    .setPositiveButton("Delete") { dialog, which ->
                         val dbRef = FirebaseDatabase.getInstance().getReference("Alarms")
                         dbRef.child(currentTask.task).removeValue()
                         viewModel.deleteTask(currentTask)
@@ -60,9 +57,35 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
             binding.days.text = days
             if(currentTask.weekly==0){binding.week.text= "Weekly"}
             else if(currentTask.weekly==1){binding.week.text="Bi-Weekly"}
-            if(currentTask.isDismissed){
-                binding.dismiss.text="Dismissed"
-                binding.clock.setImageResource(R.drawable.hollow_time)
+            val hours = currentTask.time[0]%12
+            val minute = currentTask.time[1]/5
+            when(hours){
+                0-> binding.oclock.setImageResource(R.drawable.twelve)
+                1-> binding.oclock.setImageResource(R.drawable.one)
+                2-> binding.oclock.setImageResource(R.drawable.two)
+                3-> binding.oclock.setImageResource(R.drawable.three)
+                4-> binding.oclock.setImageResource(R.drawable.four)
+                5-> binding.oclock.setImageResource(R.drawable.five)
+                6-> binding.oclock.setImageResource(R.drawable.six)
+                7-> binding.oclock.setImageResource(R.drawable.seven)
+                8-> binding.oclock.setImageResource(R.drawable.eight)
+                9-> binding.oclock.setImageResource(R.drawable.nine)
+                10-> binding.oclock.setImageResource(R.drawable.ten)
+                11-> binding.oclock.setImageResource(R.drawable.eleven)
+            }
+            when(minute){
+                0-> binding.minute.setImageResource(R.drawable.zerominute)
+                1-> binding.minute.setImageResource(R.drawable.fiveminute)
+                2-> binding.minute.setImageResource(R.drawable.tenminute)
+                3-> binding.minute.setImageResource(R.drawable.fifteenminute)
+                4-> binding.minute.setImageResource(R.drawable.twentyminute)
+                5-> binding.minute.setImageResource(R.drawable.twentyfiveminute)
+                6-> binding.minute.setImageResource(R.drawable.thirtyminute)
+                7-> binding.minute.setImageResource(R.drawable.thirtyfiveminute)
+                8-> binding.minute.setImageResource(R.drawable.fourtyminute)
+                9-> binding.minute.setImageResource(R.drawable.fourtyfiveminute)
+                10-> binding.minute.setImageResource(R.drawable.fiftyminute)
+                11-> binding.minute.setImageResource(R.drawable.fiftyfiveminute)
             }
         }
 

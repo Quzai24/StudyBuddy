@@ -62,8 +62,13 @@ class TaskViewModel: ViewModel() {
     fun deleteTask(task: Task){
         _tasks.value?.remove(task)
     }
-    fun setTask(index: Int,task: Task){
-        _tasks.value?.set(index,task)
+    fun setTask(name: String,alarm: Task){
+        _tasks.value?.forEachIndexed { index, task ->
+            if (name == task.task) {
+                _tasks.value?.set(index, alarm)
+                return
+            }
+        }
     }
     fun isIn(task: Task): Boolean{
         for(t in _tasks.value!!)

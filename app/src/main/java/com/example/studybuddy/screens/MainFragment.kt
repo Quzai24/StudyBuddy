@@ -77,7 +77,7 @@ class MainFragment : Fragment() {
                         if(!viewModel.isIn(alarm!!))
                             viewModel.addTask(alarm)
                     }
-                    val mAdapter = TaskAdapter(viewModel.tasks.value!!,requireContext(),viewModel)
+                    val mAdapter = context?.let { TaskAdapter(viewModel.tasks.value!!, it,viewModel) }
                     binding.recyclerview.adapter = mAdapter
                 }
             }override fun onCancelled(error: DatabaseError) {} })

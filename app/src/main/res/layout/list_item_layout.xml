@@ -6,12 +6,25 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/clock"
+        android:id="@+id/oclock"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/clock"
+        android:src="@drawable/twelve"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/minute"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/thirtyminute"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
@@ -40,8 +53,8 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/time"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/clock"
-        app:layout_constraintTop_toTopOf="@+id/clock"
+        app:layout_constraintStart_toEndOf="@+id/oclock"
+        app:layout_constraintTop_toTopOf="@+id/oclock"
         app:layout_constraintVertical_chainStyle="spread_inside"
         tools:text="Wash the dishes" />
 
@@ -54,7 +67,7 @@
         app:layout_constraintEnd_toStartOf="@+id/week"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toEndOf="@+id/clock"
+        app:layout_constraintStart_toEndOf="@+id/oclock"
         app:layout_constraintStart_toStartOf="@+id/task"
         app:layout_constraintTop_toBottomOf="@+id/task"
         tools:text="4:30 pm" />
@@ -65,7 +78,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/clock"
+        app:layout_constraintBottom_toBottomOf="@+id/oclock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/time"
