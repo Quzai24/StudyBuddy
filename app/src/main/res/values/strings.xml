@@ -44,4 +44,10 @@
     <string name="rep">Repeat alarms?</string>
     <string name="pomo">How many pomodoros?</string>
     <string name="studying">STUDY</string>
+    <string-array name="haircolor">
+        <item>Black</item>
+        <item>Brown</item>
+        <item>Blonde</item>
+        <item>Red</item>
+    </string-array>
 </resources>
