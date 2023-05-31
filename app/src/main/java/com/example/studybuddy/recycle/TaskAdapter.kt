@@ -1,5 +1,6 @@
 package com.example.studybuddy.recycle
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,14 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studybuddy.R
-import com.example.studybuddy.objects.Task
 import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.ListItemLayoutBinding
-import com.example.studybuddy.screens.AddFragment
+import com.example.studybuddy.objects.Task
 import com.example.studybuddy.screens.MainFragmentDirections
 import com.google.firebase.database.FirebaseDatabase
 
-class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     inner class TaskViewHolder(val binding : ListItemLayoutBinding, val context: Context,val viewModel: TaskViewModel) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var currentTask : Task
         init {
@@ -26,16 +26,17 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
                 AlertDialog.Builder(context)
                     .setTitle("Delete ${currentTask.task}?")
                     .setMessage("Are you sure you want to delete ${currentTask.task}?")
-                    .setPositiveButton("Delete") { dialog, which ->
+                    .setPositiveButton("Delete") { _, _ ->
                         val dbRef = FirebaseDatabase.getInstance().getReference("Alarms")
                         dbRef.child(currentTask.task).removeValue()
                         viewModel.deleteTask(currentTask)
                         notifyItemRemoved(this.position)
                     }
-                    .setNeutralButton("Nahhh"){dialog, which -> }.show()
+                    .setNeutralButton("Nahhh"){ _, _ -> }.show()
                 binding.delete.isChecked = false
             }
         }
+        @SuppressLint("SetTextI18n")
         fun bindTask (task: Task){
             currentTask = task
             binding.task.text = currentTask.task
@@ -47,10 +48,9 @@ class TaskAdapter(val taskList: List<Task>, val context: Context, val viewModel:
             var days = ""
             if (currentTask.days.size != 1)
                 for (day in currentTask.days) {
-                    if (day != currentTask.days[currentTask.days.size - 1])
-                        days += "$day, "
+                    days += if (day != currentTask.days[currentTask.days.size - 1]) "$day, "
                     else
-                        days += "& $day"
+                        "& $day"
                 }
             else
                 days = currentTask.days[0]

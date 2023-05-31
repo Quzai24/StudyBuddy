@@ -14,7 +14,7 @@ class StudyFragment : Fragment() {
     private var _binding : FragmentStudyBinding? = null
     private val binding get() =_binding!!
     private var numberOfPomodoros = 0
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentStudyBinding.inflate(inflater,container,false)
         val rootView = binding.root
         val pomodoroAdapter = ArrayAdapter.createFromResource(requireContext(),

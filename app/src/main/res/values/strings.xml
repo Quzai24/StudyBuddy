@@ -44,6 +44,9 @@
     <string name="rep">Repeat alarms?</string>
     <string name="pomo">How many pomodoros?</string>
     <string name="studying">STUDY</string>
+    <string name="hair_color">Hair Color</string>
+    <string name="check">✔</string>
+    <string name="name">Name</string>
     <string-array name="haircolor">
         <item>Black</item>
         <item>Brown</item>

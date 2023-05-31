@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
     private val viewModel: TaskViewModel by activityViewModels()
     private lateinit var dbRef : DatabaseReference
     private lateinit var settingsdbRef : DatabaseReference
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
@@ -83,11 +83,13 @@ class MainFragment : Fragment() {
             }override fun onCancelled(error: DatabaseError) {} })
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.options_menu,menu)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item,requireView().findNavController())
                 || super.onOptionsItemSelected(item)

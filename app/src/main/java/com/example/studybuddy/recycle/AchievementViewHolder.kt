@@ -16,7 +16,7 @@ class AchievementViewHolder(val binding: ListAchievementLayoutBinding): Recycler
         if(!currentAchievement.unlocked){
             val grayscaleMatrix = ColorMatrix()
             grayscaleMatrix.setSaturation(0f)
-            binding.trophy.setColorFilter(ColorMatrixColorFilter(grayscaleMatrix))
+            binding.trophy.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
         }
     }
 }

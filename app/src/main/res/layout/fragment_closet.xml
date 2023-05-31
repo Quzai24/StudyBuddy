@@ -125,7 +125,7 @@
         android:id="@+id/enterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/eyesTwo"
         app:layout_constraintHorizontal_bias="0.05"
@@ -136,7 +136,7 @@
         android:id="@+id/check"
         android:layout_width="50dp"
         android:layout_height="60dp"
-        android:text="✔"
+        android:text="@string/check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -214,7 +214,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Hair Color"
+        android:text="@string/hair_color"
         app:layout_constraintBottom_toBottomOf="@+id/personFour"
         app:layout_constraintEnd_toEndOf="@+id/eyesFour"
         app:layout_constraintStart_toStartOf="@+id/eyesThree" />

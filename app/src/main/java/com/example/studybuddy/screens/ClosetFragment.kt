@@ -1,12 +1,11 @@
 package com.example.studybuddy.screens
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.studybuddy.R
@@ -17,14 +16,14 @@ class ClosetFragment : Fragment() {
     private var _binding : FragmentClosetBinding? = null
     private val binding get() =_binding!!
     private val viewModel: TaskViewModel by activityViewModels()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentClosetBinding.inflate(inflater,container,false)
         val rootView = binding.root
         var skin = viewModel.getOutfit(0)
         var eye = viewModel.getOutfit(7)
         var hair = viewModel.getOutfit(8)
         var haircolor = 0
-        val lamb: (View, Int)-> Unit = {view, num->
+        val lamb: (View, Int)-> Unit = { _, num->
             binding.person.setImageResource(viewModel.getOutfit(num).outfit)
             skin = viewModel.getOutfit(num)
         }
@@ -32,7 +31,7 @@ class ClosetFragment : Fragment() {
         binding.personTwo.setOnClickListener{lamb(binding.personTwo,1)}
         binding.personThree.setOnClickListener{lamb(binding.personThree,2)}
         binding.personFour.setOnClickListener{lamb(binding.personFour,3)}
-        val lamb2: (View, Int)-> Unit = {view, num->
+        val lamb2: (View, Int)-> Unit = { _, num->
             binding.eyes.setImageResource(viewModel.getOutfit(num).outfit)
             eye = viewModel.getOutfit(num)
         }
@@ -41,9 +40,10 @@ class ClosetFragment : Fragment() {
         binding.eyesThree.setOnClickListener{lamb2(binding.eyesThree,6)}
         binding.eyesFour.setOnClickListener{lamb2(binding.eyesFour,7)}
         binding.haircolor.setOnClickListener{ activity?.let {
-            AlertDialog.Builder(it).setTitle("Hair Color?").setSingleChoiceItems(R.array.haircolor,-1,
-                DialogInterface.OnClickListener{ dialog, index ->
-                    if(index == 0){
+            AlertDialog.Builder(it).setTitle("Hair Color?").setSingleChoiceItems(R.array.haircolor,-1)
+            { _, index ->
+                when(index) {
+                    0-> {
                         binding.rightpart.setImageResource(R.drawable.blackrightpart)
                         binding.leftpart.setImageResource(R.drawable.blackleftpart)
                         binding.middlepart.setImageResource(R.drawable.blackmiddlepart)
@@ -51,7 +51,7 @@ class ClosetFragment : Fragment() {
                         binding.pigtails.setImageResource(R.drawable.blackpigtails)
                         binding.longmiddlepart.setImageResource(R.drawable.longblackmiddlepart)
                     }
-                    else if(index == 1){
+                    1-> {
                         binding.rightpart.setImageResource(R.drawable.brownrightpart)
                         binding.leftpart.setImageResource(R.drawable.brownleftpart)
                         binding.middlepart.setImageResource(R.drawable.brownmiddlepart)
@@ -59,7 +59,7 @@ class ClosetFragment : Fragment() {
                         binding.pigtails.setImageResource(R.drawable.brownpigtails)
                         binding.longmiddlepart.setImageResource(R.drawable.longbrownmiddlepart)
                     }
-                    else if(index == 2){
+                    2-> {
                         binding.rightpart.setImageResource(R.drawable.blonderightpart)
                         binding.leftpart.setImageResource(R.drawable.blondeleftpart)
                         binding.middlepart.setImageResource(R.drawable.blondemiddlepart)
@@ -67,19 +67,19 @@ class ClosetFragment : Fragment() {
                         binding.pigtails.setImageResource(R.drawable.blondepigtails)
                         binding.longmiddlepart.setImageResource(R.drawable.longblondemiddlepart)
                     }
-                    else if(index == 3){
+                    3-> {
                         binding.rightpart.setImageResource(R.drawable.gingerrightpart)
                         binding.leftpart.setImageResource(R.drawable.gingerleftpart)
                         binding.middlepart.setImageResource(R.drawable.gingermiddlepart)
                         binding.longrightpart.setImageResource(R.drawable.longgingerrightpart)
                         binding.pigtails.setImageResource(R.drawable.gingerpigtails)
                         binding.longmiddlepart.setImageResource(R.drawable.longgingermiddlepart)
-                    }
-                    haircolor=index
-                }).setPositiveButton("OK",DialogInterface.OnClickListener{ dialogInterface, i -> }).create().show()
+                    } }
+                haircolor = index
+            }.setPositiveButton("OK") { _, _ -> }.create().show()
         }?: throw IllegalStateException("Exception!! Activity is null") }
 
-        val lamb3: (View, Int)-> Unit = {view, num->
+        val lamb3: (View, Int)-> Unit = { _, num->
             binding.hair.setImageResource(viewModel.getOutfit(num).overlay)
             hair = viewModel.getOutfit(num)
         }

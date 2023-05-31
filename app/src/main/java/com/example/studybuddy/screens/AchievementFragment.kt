@@ -14,7 +14,7 @@ class AchievementFragment : Fragment() {
     private var _binding : FragmentAchievementBinding? = null
     private val binding get() =_binding!!
     private val viewModel: TaskViewModel by activityViewModels()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAchievementBinding.inflate(inflater,container,false)
         val rootView = binding.root
         val mAdapter = AchievementAdapter(viewModel.achievementList.value!!)

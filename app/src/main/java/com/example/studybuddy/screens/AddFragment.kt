@@ -1,5 +1,6 @@
 package com.example.studybuddy.screens
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context.ALARM_SERVICE
 import android.content.Context.NOTIFICATION_SERVICE
@@ -36,6 +37,7 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
     private var rep = 5
     private lateinit var dbRef : DatabaseReference
     private val viewModel: TaskViewModel by activityViewModels()
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         val rootView = binding.root
@@ -50,8 +52,8 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
             binding.enterTask.setText(task.task)
             var hour = task.time[0]%12
             if(hour==0) hour = 12
-            var minute = if(task.time[1]<10){"0"}else{""} + task.time[1]
-            var afternoon  = if(task.time[0]>12){"PM"}else{"AM"}
+            val minute = if(task.time[1]<10){"0"}else{""} + task.time[1]
+            val afternoon  = if(task.time[0]>12){"PM"}else{"AM"}
             binding.whattime.text = "$hour : $minute $afternoon"
             if(task.days.contains("Sunday")){binding.sunday.isChecked = true}
             if(task.days.contains("Monday")){binding.monday.isChecked = true}
@@ -131,7 +133,6 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
             .show()
     }
 
-
     private fun createNotificationChannel() {
         val name = "Notif Channel"
         val desc = "A description of the channel"
@@ -140,10 +141,6 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         channel.description = desc
         val notificationManager: NotificationManager = activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
-    }
-
-    fun dismissNotification(){
-
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {

@@ -15,9 +15,9 @@ import com.example.studybuddy.databinding.FragmentProfileBinding
 class ProfileFragment : Fragment() {
     private var _binding : FragmentProfileBinding? = null
     private val binding get() =_binding!!
-    val list = mutableListOf<List<Achievement>>()
+    private val list = mutableListOf<List<Achievement>>()
     private val viewModel: TaskViewModel by activityViewModels()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val rootView = binding.root
 
