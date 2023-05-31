@@ -77,6 +77,7 @@
         android:id="@+id/eyesOne"
         android:layout_width="80dp"
         android:layout_height="35dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/eyesone"
         app:layout_constraintBottom_toTopOf="@+id/eyesThree"
         app:layout_constraintEnd_toStartOf="@+id/eyesTwo"
@@ -101,9 +102,7 @@
         android:id="@+id/eyesThree"
         android:layout_width="80dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="20dp"
         android:src="@drawable/eyesthree"
-        app:layout_constraintBottom_toBottomOf="@+id/personFour"
         app:layout_constraintEnd_toStartOf="@+id/eyesFour"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -209,5 +208,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pigtails"
         app:layout_constraintTop_toTopOf="@+id/longmiddlepart" />
+
+    <Button
+        android:id="@+id/haircolor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Hair Color"
+        app:layout_constraintBottom_toBottomOf="@+id/personFour"
+        app:layout_constraintEnd_toEndOf="@+id/eyesFour"
+        app:layout_constraintStart_toStartOf="@+id/eyesThree" />
+
+    <ImageView
+        android:id="@+id/hair"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/blackrightpartoverlay"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintStart_toStartOf="@+id/person"
+        app:layout_constraintTop_toTopOf="@+id/person" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

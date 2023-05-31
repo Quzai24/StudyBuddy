@@ -8,28 +8,16 @@
     tools:context=".screens.ProfileFragment">
 
     <ImageView
-        android:id="@+id/hat"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        tools:src="@drawable/hatoverlayone"
-        app:layout_constraintBottom_toBottomOf="@+id/profilepicture"
-        app:layout_constraintEnd_toEndOf="@+id/profilepicture"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="@+id/profilepicture"
-        app:layout_constraintTop_toTopOf="@+id/profilepicture"
-        app:layout_constraintVertical_bias="0.06" />
-
-    <ImageView
         android:id="@+id/profilepicture"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        tools:src="@drawable/personone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.148"
+        tools:src="@drawable/personone" />
 
     <TextView
         android:id="@+id/name"
@@ -68,6 +56,17 @@
 
 
     <ImageView
+        android:id="@+id/hair"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/blackrightpartoverlay"
+        app:layout_constraintBottom_toBottomOf="@id/profilepicture"
+        app:layout_constraintEnd_toEndOf="@+id/profilepicture"
+        app:layout_constraintStart_toStartOf="@+id/profilepicture"
+        app:layout_constraintTop_toTopOf="@+id/profilepicture" />
+
+    <ImageView
         android:id="@+id/shirtOverlay"
         android:layout_width="150dp"
         android:layout_height="91dp"
@@ -76,6 +75,18 @@
         app:layout_constraintEnd_toEndOf="@+id/profilepicture"
         app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="@+id/profilepicture" />
+
+    <ImageView
+        android:id="@+id/hat"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profilepicture"
+        app:layout_constraintEnd_toEndOf="@+id/profilepicture"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="@+id/profilepicture"
+        app:layout_constraintTop_toTopOf="@+id/profilepicture"
+        app:layout_constraintVertical_bias="0.06"
+        tools:src="@drawable/hatoverlayone" />
 
     <ImageView
         android:id="@+id/jacketOverlay"
@@ -96,5 +107,6 @@
         android:src="@drawable/ic_baseline_arrow_circle_left_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

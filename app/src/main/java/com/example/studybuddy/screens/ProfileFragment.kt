@@ -23,6 +23,7 @@ class ProfileFragment : Fragment() {
 
         binding.profilepicture.setImageResource(viewModel.getFit(0).overlay)
         binding.eye.setImageResource(viewModel.getFit(1).overlay)
+        binding.hair.setImageResource(viewModel.getFit(2).overlay)
         binding.hat.setImageResource(viewModel.getFit(3).overlay)
         binding.shirtOverlay.setImageResource(viewModel.getFit(4).overlay)
         binding.jacketOverlay.setImageResource(viewModel.getFit(5).overlay)
