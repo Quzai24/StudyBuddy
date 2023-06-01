@@ -17,8 +17,7 @@ class StudyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentStudyBinding.inflate(inflater,container,false)
         val rootView = binding.root
-        val pomodoroAdapter = ArrayAdapter.createFromResource(requireContext(),
-            R.array.pomodoros, android.R.layout.simple_spinner_item)
+        val pomodoroAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.pomodoros, android.R.layout.simple_spinner_item)
         pomodoroAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.howmany.adapter = pomodoroAdapter
         binding.howmany.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {

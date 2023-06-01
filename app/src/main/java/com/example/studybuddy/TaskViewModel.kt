@@ -26,9 +26,9 @@ class TaskViewModel: ViewModel() {
         get()= _tasks
 
     private val _achievementList: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
-        Achievement("Getting Started","Complete 1 Task",false,outfits[32]),
-        Achievement("It's a Start","Complete 10 Task",false,outfits[33]),
-        Achievement("Progress","Complete 20 Task",false,outfits[34])))
+        Achievement("Getting Started","Complete 1 Task",true,outfits[32], false),
+        Achievement("It's a Start","Complete 10 Task",true,outfits[33], false),
+        Achievement("Progress","Complete 20 Task",true,outfits[34], false)))
     val achievementList: LiveData<List<Achievement>>
         get() = _achievementList
 
@@ -37,7 +37,7 @@ class TaskViewModel: ViewModel() {
         get()= _complete
 
     var name = "Study Buddy"
-    private val fit = mutableListOf(outfits[0],outfits[4], Outfit(0,0,"","hair"), Outfit(0,0,"","hat"), Outfit(0,0,"","shirt"), Outfit(0,0,"","jacket"))
+    private val fit = mutableListOf(outfits[0],outfits[4], outfits[8], Outfit(0,0,"","hat"), Outfit(0,0,"","shirt"), Outfit(0,0,"","jacket"))
 
     var darkMode = false
     var studyNotifications = false

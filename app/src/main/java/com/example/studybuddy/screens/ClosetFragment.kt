@@ -11,17 +11,23 @@ import androidx.navigation.findNavController
 import com.example.studybuddy.R
 import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentClosetBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ClosetFragment : Fragment() {
     private var _binding : FragmentClosetBinding? = null
     private val binding get() =_binding!!
     private val viewModel: TaskViewModel by activityViewModels()
+    private lateinit var dbRef : DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentClosetBinding.inflate(inflater,container,false)
         val rootView = binding.root
-        var skin = viewModel.getOutfit(0)
-        var eye = viewModel.getOutfit(7)
-        var hair = viewModel.getOutfit(8)
+        binding.person.setImageResource(viewModel.getFit(0).overlay)
+        binding.eyes.setImageResource(viewModel.getFit(1).overlay)
+        binding.hair.setImageResource(viewModel.getFit(2).overlay)
+        var skin = viewModel.getFit(0)
+        var eye = viewModel.getFit(1)
+        var hair = viewModel.getFit(2)
         var haircolor = 0
         val lamb: (View, Int)-> Unit = { _, num->
             binding.person.setImageResource(viewModel.getOutfit(num).outfit)
@@ -39,8 +45,8 @@ class ClosetFragment : Fragment() {
         binding.eyesTwo.setOnClickListener{lamb2(binding.eyesTwo,5)}
         binding.eyesThree.setOnClickListener{lamb2(binding.eyesThree,6)}
         binding.eyesFour.setOnClickListener{lamb2(binding.eyesFour,7)}
-        binding.haircolor.setOnClickListener{ activity?.let {
-            AlertDialog.Builder(it).setTitle("Hair Color?").setSingleChoiceItems(R.array.haircolor,-1)
+        binding.haircolor.setOnClickListener{
+            activity?.let { AlertDialog.Builder(it).setTitle("Hair Color?").setSingleChoiceItems(R.array.haircolor,-1)
             { _, index ->
                 when(index) {
                     0-> {
@@ -78,7 +84,6 @@ class ClosetFragment : Fragment() {
                 haircolor = index
             }.setPositiveButton("OK") { _, _ -> }.create().show()
         }?: throw IllegalStateException("Exception!! Activity is null") }
-
         val lamb3: (View, Int)-> Unit = { _, num->
             binding.hair.setImageResource(viewModel.getOutfit(num).overlay)
             hair = viewModel.getOutfit(num)
@@ -90,6 +95,11 @@ class ClosetFragment : Fragment() {
         binding.pigtails.setOnClickListener{lamb3(binding.pigtails,24+haircolor)}
         binding.longmiddlepart.setOnClickListener{lamb3(binding.longmiddlepart,28+haircolor)}
         binding.check.setOnClickListener{
+            dbRef = FirebaseDatabase.getInstance().getReference("Profile")
+            dbRef.child("Name").setValue(binding.enterName.text.toString())
+            dbRef.child("SkinColor").setValue(skin)
+            dbRef.child("EyeColor").setValue(eye)
+            dbRef.child("Hair").setValue(hair)
             viewModel.name = binding.enterName.text.toString()
             viewModel.setFit(skin,0)
             viewModel.setFit(eye,1)

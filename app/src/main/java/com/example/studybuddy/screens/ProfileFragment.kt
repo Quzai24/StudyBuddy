@@ -11,12 +11,15 @@ import com.example.studybuddy.objects.Achievement
 import com.example.studybuddy.recycle.ShopAdapter
 import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentProfileBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ProfileFragment : Fragment() {
     private var _binding : FragmentProfileBinding? = null
     private val binding get() =_binding!!
     private val list = mutableListOf<List<Achievement>>()
     private val viewModel: TaskViewModel by activityViewModels()
+    private lateinit var dbRef : DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val rootView = binding.root
@@ -35,25 +38,30 @@ class ProfileFragment : Fragment() {
                 achievementList.add(viewModel.achievementList.value!![index - 2])
                 achievementList.add(viewModel.achievementList.value!![index - 1])
                 achievementList.add(achievement)
-                var isin = false
+                var isIn = false
                 for (row in list)
                     if (row == achievementList)
-                        isin = true
-                if (!isin)
+                        isIn = true
+                if (!isIn)
                     list.add(achievementList)
             }
         }
 
-            val mAdapter = ShopAdapter(list,viewModel)
-            binding.customizationRecyclerView.adapter = mAdapter
+        val mAdapter = ShopAdapter(list,viewModel,binding)
+        binding.customizationRecyclerView.adapter = mAdapter
 
         val lamb: (View)-> Unit = { binding.root.findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToPersonalFragment()) }
         binding.profilepicture.setOnClickListener(lamb)
         binding.eye.setOnClickListener(lamb)
+        binding.hair.setOnClickListener(lamb)
         binding.shirtOverlay.setOnClickListener(lamb)
         binding.jacketOverlay.setOnClickListener(lamb)
         binding.back.setOnClickListener{
             rootView.findNavController().navigateUp()
+            dbRef = FirebaseDatabase.getInstance().getReference("Profile")
+            dbRef.child("Hat").setValue(viewModel.getFit(3))
+            dbRef.child("Shirt").setValue(viewModel.getFit(4))
+            dbRef.child("Jacket").setValue(viewModel.getFit(5))
         }
         return rootView
     }

@@ -59,7 +59,6 @@
         android:id="@+id/hair"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="8dp"
         android:src="@drawable/blackrightpartoverlay"
         app:layout_constraintBottom_toBottomOf="@id/profilepicture"
         app:layout_constraintEnd_toEndOf="@+id/profilepicture"
