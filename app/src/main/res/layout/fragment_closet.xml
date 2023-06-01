@@ -228,5 +228,39 @@
         app:layout_constraintEnd_toEndOf="@+id/person"
         app:layout_constraintStart_toStartOf="@+id/person"
         app:layout_constraintTop_toTopOf="@+id/person" />
+    <ImageView
+        android:id="@+id/shirtOverlay"
+        android:layout_width="150dp"
+        android:layout_height="91dp"
+        tools:src="@drawable/shirtoverlayone"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="@+id/person" />
+
+    <ImageView
+        android:id="@+id/hat"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="@+id/person"
+        app:layout_constraintTop_toTopOf="@+id/person"
+        app:layout_constraintVertical_bias="0.06"
+        tools:src="@drawable/hatoverlayone" />
+
+    <ImageView
+        android:id="@+id/jacketOverlay"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        tools:src="@drawable/jacketoverlayone"
+        app:layout_constraintBottom_toBottomOf="@+id/person"
+        app:layout_constraintEnd_toEndOf="@+id/person"
+        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintStart_toStartOf="@+id/person"
+        app:layout_constraintTop_toTopOf="@+id/person"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

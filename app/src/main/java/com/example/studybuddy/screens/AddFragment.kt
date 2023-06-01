@@ -9,6 +9,7 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.format.DateFormat.getLongDateFormat
 import android.text.format.DateFormat.getTimeFormat
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import com.example.studybuddy.objects.Notification
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
@@ -35,6 +37,7 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
     private var hourOfDay = 0
     private var minute = 0
     private var rep = 5
+    var weekTwoWeekNo = 2
     private lateinit var dbRef : DatabaseReference
     private val viewModel: TaskViewModel by activityViewModels()
     @SuppressLint("SetTextI18n")
@@ -92,7 +95,6 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         binding.confirm.setOnClickListener{
             val name = binding.enterTask.text.toString()
             val days = getWeek()
-            var weekTwoWeekNo = 2
             if(binding.weekly.isChecked){weekTwoWeekNo=0}
             if(binding.biweekly.isChecked){weekTwoWeekNo=1}
 
@@ -112,15 +114,21 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
     }
 
     private fun scheduleNotification() {
-        val intent = Intent(activity?.applicationContext!!, Notification::class.java)
-        intent.putExtra(titleExtra, titleExtra)
-        intent.putExtra(messageExtra, messageExtra)
-        val pendingIntent = PendingIntent.getBroadcast(activity?.applicationContext!!, notificationID,intent,PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         val alarmManager = activity?.getSystemService(ALARM_SERVICE) as AlarmManager
+        if (calendar.timeInMillis < System.currentTimeMillis()) { calendar.add(Calendar.DAY_OF_YEAR, 1) }
+        val day = calendar.get(Calendar.DAY_OF_WEEK).toString()
+        Log.d(day, "addfrag")
         val time = calendar.timeInMillis
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent)
-        showAlert(time, titleExtra, messageExtra)
+        val intent = Intent(activity?.applicationContext!!, Notification::class.java)
+        intent.putExtra(titleExtra, binding.enterTask.text.toString())
+        intent.putExtra(messageExtra, getTimeFormat(activity?.applicationContext!!).format(Date(time)))
+        val pendingIntent = PendingIntent.getBroadcast(activity?.applicationContext!!, notificationID,intent,PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        if(weekTwoWeekNo==0){ alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, 24 * 7 * 60 * 60 * 1000, pendingIntent) }
+        else if(weekTwoWeekNo==1){ alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, 24 * 14 * 60 * 60 * 1000, pendingIntent) }
+        else alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent)
+        showAlert(time, binding.enterTask.text.toString(), calendar.time.toString())
     }
+
 
     private fun showAlert(time: Long, title: String, message: String) {
         val date = Date(time)
@@ -169,4 +177,28 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         if(binding.saturday.isChecked){daysOfTheWeek.add("Saturday")}
         return daysOfTheWeek
     }
+//    private fun getNextDay():String{
+//        val daysOfTheWeek = mutableListOf<String>()
+//        if(binding.sunday.isChecked){daysOfTheWeek.add("Sunday")}else{daysOfTheWeek.add("")}
+//        if(binding.monday.isChecked){daysOfTheWeek.add("Monday")}else{daysOfTheWeek.add("")}
+//        if(binding.tuesday.isChecked){daysOfTheWeek.add("Tuesday")}else{daysOfTheWeek.add("")}
+//        if(binding.wednesday.isChecked){daysOfTheWeek.add("Wednesday")}else{daysOfTheWeek.add("")}
+//        if(binding.thursday.isChecked){daysOfTheWeek.add("Thursday")}else{daysOfTheWeek.add("")}
+//        if(binding.friday.isChecked){daysOfTheWeek.add("Friday")}else{daysOfTheWeek.add("")}
+//        if(binding.saturday.isChecked){daysOfTheWeek.add("Saturday")}else{daysOfTheWeek.add("")}
+//        val day = when(calendar.get(Calendar.DAY_OF_WEEK).toString()){
+//            "SUNDAY"-> 0
+//            "MONDAY"-> 1
+//            "TUESDAY"-> 2
+//            "WEDNESDAY"-> 3
+//            "THURSDAY"-> 4
+//            "FRIDAY"-> 5
+//            "SATURDAY"-> 6
+//            else-> return ""
+//        }
+//        if(LocalDate.now().getDayOfWeek().toString() == daysOfTheWeek[day].uppercase())
+//        daysOfTheWeek.forEachIndexed { index, s ->
+//
+//        }
+//    }
 }
