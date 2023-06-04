@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studybuddy.R
@@ -14,8 +15,12 @@ import com.example.studybuddy.objects.Task
 import com.example.studybuddy.screens.MainFragmentDirections
 import com.google.firebase.database.FirebaseDatabase
 
-class TaskAdapter(private val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
-    inner class TaskViewHolder(val binding : ListItemLayoutBinding, val context: Context,val viewModel: TaskViewModel) : RecyclerView.ViewHolder(binding.root) {
+class TaskAdapter(
+    private val taskList: List<Task>, val context: Context, val viewModel: TaskViewModel, val activity: FragmentActivity?) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+    inner class TaskViewHolder(
+        val binding: ListItemLayoutBinding,
+        val context: Context,
+        val viewModel: TaskViewModel, activity: FragmentActivity?) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var currentTask : Task
         init {
             binding.root.setOnClickListener{
@@ -30,6 +35,7 @@ class TaskAdapter(private val taskList: List<Task>, val context: Context, val vi
                         val dbRef = FirebaseDatabase.getInstance().getReference("Alarms")
                         dbRef.child(currentTask.task).removeValue()
                         viewModel.deleteTask(currentTask)
+                        viewModel.removeAlarm(activity,currentTask.task)
                         notifyItemRemoved(this.position)
                     }
                     .setNeutralButton("Nahhh"){ _, _ -> }.show()
@@ -92,7 +98,7 @@ class TaskAdapter(private val taskList: List<Task>, val context: Context, val vi
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding = ListItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TaskViewHolder(binding,context,viewModel)
+        return TaskViewHolder(binding,context,viewModel,activity)
     }
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentCourse = taskList[position]

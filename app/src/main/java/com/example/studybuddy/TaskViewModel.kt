@@ -1,11 +1,18 @@
 package com.example.studybuddy
 
+import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.studybuddy.objects.Achievement
+import com.example.studybuddy.objects.Alarms
 import com.example.studybuddy.objects.Outfit
 import com.example.studybuddy.objects.Task
+import java.util.Objects
 
 class TaskViewModel: ViewModel() {
     private val outfits = listOf(
@@ -25,6 +32,8 @@ class TaskViewModel: ViewModel() {
     val tasks: LiveData<MutableList<Task>>
         get()= _tasks
 
+    val alarms = mutableListOf<Alarms>()
+
     private val _achievementList: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
         Achievement("Getting Started","Complete 1 Task",true,outfits[32], false),
         Achievement("It's a Start","Complete 10 Task",true,outfits[33], false),
@@ -37,6 +46,7 @@ class TaskViewModel: ViewModel() {
         get()= _complete
 
     var name = "Study Buddy"
+
     private val fit = mutableListOf(outfits[0],outfits[4], outfits[8], Outfit(0,0,"","hat"), Outfit(0,0,"","shirt"), Outfit(0,0,"","jacket"))
 
     var darkMode = false
@@ -70,6 +80,18 @@ class TaskViewModel: ViewModel() {
             }
         }
     }
+
+    fun removeAlarm(activity : Activity?,name : String){
+        val alarmManager = activity?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        for(i in alarms)
+            if(i.name==name) {
+                for (j in i.alarms)
+                    alarmManager.cancel(j)
+                alarms.remove(i)
+                Log.d("IT WORKS","ViewModel")
+            }
+    }
+
     fun isIn(task: Task): Boolean{
         for(t in _tasks.value!!)
             if(t.task == task.task)
