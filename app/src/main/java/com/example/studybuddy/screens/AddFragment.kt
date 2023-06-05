@@ -9,7 +9,6 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.format.DateFormat.getLongDateFormat
 import android.text.format.DateFormat.getTimeFormat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -127,12 +126,13 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         val alarms = mutableListOf<PendingIntent>()
         while (nextDay.size != 0) {
             if (nextDay[0] != 0) { calendar.add(Calendar.DAY_OF_YEAR, nextDay[0]) }
-            val day = calendar.get(Calendar.DAY_OF_WEEK).toString()
+            calendar.get(Calendar.DAY_OF_WEEK).toString()
             time = calendar.timeInMillis
 
             val intent = Intent(activity?.applicationContext!!, Notification::class.java)
             intent.putExtra(titleExtra, binding.enterTask.text.toString())
             intent.putExtra(messageExtra, getTimeFormat(activity?.applicationContext!!).format(Date(time)))
+            intent.apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
             val pendingIntent = PendingIntent.getBroadcast(activity?.applicationContext!!, notificationID, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             alarms.add(0,pendingIntent)
 
@@ -142,11 +142,11 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
             nextDay.removeAt(0)
         }
         viewModel.alarms.add(Alarms(alarms, binding.enterTask.text.toString()))
-        showAlert(time, binding.enterTask.text.toString(), calendar.time.toString())
+        showAlert(time, binding.enterTask.text.toString())
     }
 
 
-    private fun showAlert(time: Long, title: String, message: String) {
+    private fun showAlert(time: Long, title: String) {
         val date = Date(time)
         val dateFormat = getLongDateFormat(activity?.applicationContext!!)
         val timeFormat = getTimeFormat(activity?.applicationContext!!)

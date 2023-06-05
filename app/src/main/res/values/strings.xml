@@ -35,7 +35,7 @@
     <string name="fivemin">5 min</string>
     <string name="pic">Pick a time</string>
     <string name="about">About</string>
-    <string name="abouttext">This app will let you set alarms/reminders for tasks. As an incentive there are achievements for completing tasks that unlock profile customization options.</string>
+    <string name="abouttext">This app will let you set alarms/reminders for your tasks and it helps you study using the pomodoro technique. As an incentive there are achievements for completing tasks and studying that unlock profile customization options.</string>
     <string name="achive">ACHIEVEMENTS</string>
     <string name="visual">Visual</string>
     <string name="darkMode">Dark mode</string>
@@ -47,10 +47,17 @@
     <string name="hair_color">Hair Color</string>
     <string name="check">✔</string>
     <string name="name">Name</string>
+    <string name="start">Start</string>
+    <string name="task_completed">Task Completed</string>
+    <string name="repeat_the_alarm">Repeat the Alarm</string>
+    <string name="not_today_thank_you">Not today Thank You</string>
+    <string name="retur">Return</string>
+    <string name="rest_up">Rest up</string>
+    <string name="earned">you have earned it</string>
     <string-array name="haircolor">
         <item>Black</item>
         <item>Brown</item>
         <item>Blonde</item>
-        <item>Red</item>
+        <item>Ginger</item>
     </string-array>
 </resources>

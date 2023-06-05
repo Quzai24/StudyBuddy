@@ -36,7 +36,6 @@ class MainFragment : Fragment() {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
                     if(snapshot.child("Repeat Alarms").getValue<Boolean>()!!){ viewModel.repeatAlarms = true }
-                    if(snapshot.child("Study Notifications").getValue<Boolean>()!!){ viewModel.studyNotifications = true }
                 }
             }
             override fun onCancelled(error: DatabaseError) {}

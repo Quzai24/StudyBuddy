@@ -2,9 +2,7 @@ package com.example.studybuddy
 
 import android.app.Activity
 import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +10,6 @@ import com.example.studybuddy.objects.Achievement
 import com.example.studybuddy.objects.Alarms
 import com.example.studybuddy.objects.Outfit
 import com.example.studybuddy.objects.Task
-import java.util.Objects
 
 class TaskViewModel: ViewModel() {
     private val outfits = listOf(
@@ -34,23 +31,32 @@ class TaskViewModel: ViewModel() {
 
     val alarms = mutableListOf<Alarms>()
 
-    private val _achievementList: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
-        Achievement("Getting Started","Complete 1 Task",true,outfits[32], false),
-        Achievement("It's a Start","Complete 10 Task",true,outfits[33], false),
-        Achievement("Progress","Complete 20 Task",true,outfits[34], false)))
-    val achievementList: LiveData<List<Achievement>>
-        get() = _achievementList
+    private val _achievements: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
+        Achievement("Getting Started","Complete 1 Task",true,outfits[32], 1, false),
+        Achievement("It's a Start","Complete 10 Task",true,outfits[33], 10, false),
+        Achievement("Progress","Complete 20 Task",true,outfits[34], 20, false)))
+    val achievements: LiveData<List<Achievement>>
+        get() = _achievements
 
-    private val _complete: MutableLiveData<Int> = MutableLiveData(0)
-    val complete: LiveData<Int>
-        get()= _complete
+    private val _taskAchievements: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
+        Achievement("Getting Started","Complete 1 Task",true,outfits[32], 1, false),
+        Achievement("It's a Start","Complete 10 Task",true,outfits[33], 10, false),
+        Achievement("Progress","Complete 20 Task",true,outfits[34], 20, false)))
+    val taskAchievements: LiveData<List<Achievement>>
+        get() = _taskAchievements
+
+    private val _studyAchievements: MutableLiveData<List<Achievement>> = MutableLiveData(listOf())
+    val studyAchievements: LiveData<List<Achievement>>
+        get() = _studyAchievements
+
+    var completeTasks = 0
+    var completeStudySession = 0
 
     var name = "Study Buddy"
 
     private val fit = mutableListOf(outfits[0],outfits[4], outfits[8], Outfit(0,0,"","hat"), Outfit(0,0,"","shirt"), Outfit(0,0,"","jacket"))
 
     var darkMode = false
-    var studyNotifications = false
     var repeatAlarms = false
 
     fun setFit (fit: Outfit, num: Int){
@@ -62,7 +68,20 @@ class TaskViewModel: ViewModel() {
     fun getOutfit(num: Int): Outfit {
         return outfits[num]
     }
-    fun achievmentGet(){
+    fun achievmentGet(taskOrStudy: Boolean, num: Int){
+        if (taskOrStudy) {
+            completeTasks += num
+            for(i in taskAchievements.value!!){
+                if(i.num==completeTasks)
+                    i.unlocked = true
+            }
+        }
+        else {
+            completeStudySession += num
+            for(i in studyAchievements.value!!)
+                if(i.num==completeStudySession)
+                    i.unlocked == true
+        }
 
     }
     fun addTask(task: Task){
@@ -88,7 +107,6 @@ class TaskViewModel: ViewModel() {
                 for (j in i.alarms)
                     alarmManager.cancel(j)
                 alarms.remove(i)
-                Log.d("IT WORKS","ViewModel")
             }
     }
 

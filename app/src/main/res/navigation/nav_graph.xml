@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_completeFragment"
+            app:destination="@id/completeFragment" />
     </fragment>
     <fragment
         android:id="@+id/AboutFragment"
@@ -55,7 +58,8 @@
         android:id="@+id/studyFragment"
         android:name="com.example.studybuddy.screens.StudyFragment"
         android:label="fragment_study"
-        tools:layout="@layout/fragment_study" />
+        tools:layout="@layout/fragment_study" >
+    </fragment>
     <fragment
         android:id="@+id/achievementFragment"
         android:name="com.example.studybuddy.screens.AchievementFragment"
@@ -75,4 +79,9 @@
         android:name="com.example.studybuddy.screens.ClosetFragment"
         android:label="fragment_personal"
         tools:layout="@layout/fragment_closet" />
+    <fragment
+        android:id="@+id/completeFragment"
+        android:name="com.example.studybuddy.screens.CompleteFragment"
+        android:label="fragment_complete"
+        tools:layout="@layout/fragment_complete" />
 </navigation>

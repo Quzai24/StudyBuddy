@@ -32,11 +32,11 @@ class ProfileFragment : Fragment() {
         binding.jacketOverlay.setImageResource(viewModel.getFit(5).overlay)
         binding.name.text = viewModel.name
 
-        viewModel.achievementList.value!!.forEachIndexed { index, achievement ->
+        viewModel.achievements.value!!.forEachIndexed { index, achievement ->
             if ((index + 1) % 3 == 0) {
                 val achievementList = mutableListOf<Achievement>()
-                achievementList.add(viewModel.achievementList.value!![index - 2])
-                achievementList.add(viewModel.achievementList.value!![index - 1])
+                achievementList.add(viewModel.achievements.value!![index - 2])
+                achievementList.add(viewModel.achievements.value!![index - 1])
                 achievementList.add(achievement)
                 var isIn = false
                 for (row in list)

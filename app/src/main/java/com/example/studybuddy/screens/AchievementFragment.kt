@@ -17,7 +17,7 @@ class AchievementFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAchievementBinding.inflate(inflater,container,false)
         val rootView = binding.root
-        val mAdapter = AchievementAdapter(viewModel.achievementList.value!!)
+        val mAdapter = AchievementAdapter(viewModel.achievements.value!!)
         binding.customizationRecyclerView.adapter = mAdapter
         return rootView
     }
