@@ -42,11 +42,11 @@ class TaskViewModel: ViewModel() {
         Achievement("Getting Started","Complete 1 Task",true,outfits[32], 1, false),
         Achievement("It's a Start","Complete 10 Task",true,outfits[33], 10, false),
         Achievement("Progress","Complete 20 Task",true,outfits[34], 20, false)))
-    val taskAchievements: LiveData<List<Achievement>>
+    private val taskAchievements: LiveData<List<Achievement>>
         get() = _taskAchievements
 
     private val _studyAchievements: MutableLiveData<List<Achievement>> = MutableLiveData(listOf())
-    val studyAchievements: LiveData<List<Achievement>>
+    private val studyAchievements: LiveData<List<Achievement>>
         get() = _studyAchievements
 
     var completeTasks = 0
@@ -71,16 +71,19 @@ class TaskViewModel: ViewModel() {
     fun achievmentGet(taskOrStudy: Boolean, num: Int){
         if (taskOrStudy) {
             completeTasks += num
-            for(i in taskAchievements.value!!){
-                if(i.num==completeTasks)
+            for(i in taskAchievements.value!!)
+                if(i.num<=completeTasks&&!i.unlocked) {
                     i.unlocked = true
-            }
+                    unlockAchievement(i)
+                }
         }
         else {
             completeStudySession += num
             for(i in studyAchievements.value!!)
-                if(i.num==completeStudySession)
+                if(i.num<=completeStudySession&&!i.unlocked) {
                     i.unlocked == true
+                    unlockAchievement(i)
+                }
         }
 
     }
@@ -115,5 +118,11 @@ class TaskViewModel: ViewModel() {
             if(t.task == task.task)
                 return true
         return false
+    }
+
+    private fun unlockAchievement(achievement: Achievement){
+        for(i in achievements.value!!)
+            if(i.name == achievement.name)
+                i.unlocked = true
     }
 }
