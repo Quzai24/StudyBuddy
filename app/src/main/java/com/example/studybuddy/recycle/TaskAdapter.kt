@@ -38,6 +38,7 @@ class TaskAdapter(
                         viewModel.removeAlarm(activity,currentTask.task)
                         notifyItemRemoved(this.position)
                     }
+                    .setNegativeButton("Complete"){_,_ -> binding.root.findNavController().navigate(MainFragmentDirections.actionMainFragmentToCompleteFragment(currentTask.task)) }
                     .setNeutralButton("Nahhh"){ _, _ -> }.show()
                 binding.delete.isChecked = false
             }

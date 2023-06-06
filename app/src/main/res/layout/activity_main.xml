@@ -13,5 +13,6 @@
         app:defaultNavHost="true"
         android:id="@+id/main_fragment" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -130,8 +130,8 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
             time = calendar.timeInMillis
 
             val intent = Intent(activity?.applicationContext!!, Notification::class.java)
-            intent.putExtra(titleExtra, binding.enterTask.text.toString())
-            intent.putExtra(messageExtra, getTimeFormat(activity?.applicationContext!!).format(Date(time)))
+            intent.putExtra("name", binding.enterTask.text.toString())
+            intent.putExtra("time", getTimeFormat(activity?.applicationContext!!).format(Date(time)))
             intent.apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK }
             val pendingIntent = PendingIntent.getBroadcast(activity?.applicationContext!!, notificationID, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
             alarms.add(0,pendingIntent)
@@ -144,7 +144,6 @@ class AddFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         viewModel.alarms.add(Alarms(alarms, binding.enterTask.text.toString()))
         showAlert(time, binding.enterTask.text.toString())
     }
-
 
     private fun showAlert(time: Long, title: String) {
         val date = Date(time)

@@ -1,6 +1,7 @@
 package com.example.studybuddy.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -11,8 +12,10 @@ import com.example.studybuddy.R
 import com.example.studybuddy.recycle.TaskAdapter
 import com.example.studybuddy.TaskViewModel
 import com.example.studybuddy.databinding.FragmentMainBinding
+import com.example.studybuddy.objects.Achievement
 import com.example.studybuddy.objects.Outfit
 import com.example.studybuddy.objects.Task
+import com.example.studybuddy.recycle.AchievementViewHolder
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 
@@ -23,6 +26,7 @@ class MainFragment : Fragment() {
     private lateinit var dbRef : DatabaseReference
     private lateinit var settingsdbRef : DatabaseReference
     private lateinit var profiledbRef : DatabaseReference
+    private lateinit var achievementdbRef : DatabaseReference
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val rootView = binding.root
@@ -56,6 +60,20 @@ class MainFragment : Fragment() {
             }
             override fun onCancelled(error: DatabaseError) {}
         })
+
+        achievementdbRef = FirebaseDatabase.getInstance().getReference("Achievements")
+        achievementdbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    viewModel.completeStudySession = snapshot.child("Complete Sessions").getValue<Int>()!!
+                    viewModel.completeTasks = snapshot.child("Complete Tasks").getValue<Int>()!!
+                    val i = 0
+                    for(achievementSnapshot in snapshot.child("Achieve").getValue<List<Achievement>>()!!){
+                        viewModel.achievements.value?.get(i)?.unlocked  = achievementSnapshot.unlocked
+                    }
+                }
+            }override fun onCancelled(error: DatabaseError) {}
+        } )
 
         setHasOptionsMenu(true)
 
@@ -91,8 +109,8 @@ class MainFragment : Fragment() {
                 if(snapshot.exists()){
                     for(alarmSnapshot in snapshot.children){
                         val alarm = alarmSnapshot.getValue(Task::class.java)
-                        if(!viewModel.isIn(alarm!!))
-                            viewModel.addTask(alarm)
+                        if(!viewModel.isIn(alarm?.task?: ""))
+                            viewModel.addTask(alarm!!)
                     }
                     val mAdapter = context?.let { TaskAdapter(viewModel.tasks.value!!, it,viewModel, activity) }
                     binding.recyclerview.adapter = mAdapter

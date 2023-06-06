@@ -50,12 +50,7 @@ class ProfileFragment : Fragment() {
         val mAdapter = ShopAdapter(list,viewModel,binding)
         binding.customizationRecyclerView.adapter = mAdapter
 
-        val lamb: (View)-> Unit = { binding.root.findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToPersonalFragment()) }
-        binding.profilepicture.setOnClickListener(lamb)
-        binding.eye.setOnClickListener(lamb)
-        binding.hair.setOnClickListener(lamb)
-        binding.shirtOverlay.setOnClickListener(lamb)
-        binding.jacketOverlay.setOnClickListener(lamb)
+        binding.hat.setOnClickListener{binding.root.findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToPersonalFragment())}
         binding.back.setOnClickListener{
             rootView.findNavController().navigateUp()
             dbRef = FirebaseDatabase.getInstance().getReference("Profile")

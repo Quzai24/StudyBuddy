@@ -18,7 +18,7 @@ import com.example.studybuddy.databinding.FragmentCompleteBinding
 import com.example.studybuddy.objects.*
 import com.example.studybuddy.objects.Notification
 import com.google.firebase.database.DatabaseReference
-import java.time.LocalDate
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class CompleteFragment : Fragment() {
@@ -29,18 +29,21 @@ class CompleteFragment : Fragment() {
     private val viewModel: TaskViewModel by activityViewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentCompleteBinding.inflate(inflater, container, false)
+        dbRef = FirebaseDatabase.getInstance().getReference("Achievements")
+        val args = CompleteFragmentArgs.fromBundle(requireArguments())
         binding.complete.setOnClickListener{
             viewModel.achievmentGet(true, 1)
-            dbRef.child("Achievements").setValue(viewModel.completeTasks)
-            binding.root.findNavController().navigateUp()
+            dbRef.child("Complete Tasks").setValue(viewModel.completeTasks)
+            dbRef.child("Achieve").setValue(viewModel.achievements.value)
+            startActivity(Intent(activity?.applicationContext!!, MainActivity::class.java))
         }
-        binding.incomplete.setOnClickListener { binding.root.findNavController().navigateUp() }
+        binding.incomplete.setOnClickListener { startActivity(Intent(activity?.applicationContext!!, MainActivity::class.java)) }
         binding.repeatalarm.setOnClickListener {
             for(i in viewModel.tasks.value!!){
                 val days = mutableListOf<String>()
                 for(j in i.days)
                     days.add(j.uppercase())
-                if(days.contains(calendar.get(Calendar.DAY_OF_WEEK).toString()) && i.time[0]==calendar.get(Calendar.HOUR_OF_DAY)) {
+                if(viewModel.isIn(args.name)) {
                     createNotificationChannel()
                     scheduleNotification(i.task, i.repeat)
                     break
@@ -48,7 +51,7 @@ class CompleteFragment : Fragment() {
             }
             binding.root.findNavController().navigateUp()
         }
-        if(viewModel.repeatAlarms)
+        if(!viewModel.repeatAlarms)
             binding.repeatalarm.isGone = true
         return binding.root
     }
@@ -59,8 +62,8 @@ class CompleteFragment : Fragment() {
         val time = calendar.timeInMillis + num * 60 * 1000
 
         val intent = Intent(activity?.applicationContext!!, Notification::class.java)
-        intent.putExtra(titleExtra, task)
-        intent.putExtra(messageExtra, DateFormat.getTimeFormat(activity?.applicationContext!!).format(Date(time)))
+        intent.putExtra("name", task)
+        intent.putExtra("time", DateFormat.getTimeFormat(activity?.applicationContext!!).format(Date(time)))
         val pendingIntent = PendingIntent.getBroadcast(activity?.applicationContext!!, notificationID, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent)

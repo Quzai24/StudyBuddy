@@ -83,5 +83,9 @@
         android:id="@+id/completeFragment"
         android:name="com.example.studybuddy.screens.CompleteFragment"
         android:label="fragment_complete"
-        tools:layout="@layout/fragment_complete" />
+        tools:layout="@layout/fragment_complete" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>
