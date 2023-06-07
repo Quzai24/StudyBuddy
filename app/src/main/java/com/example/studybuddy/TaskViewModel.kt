@@ -21,7 +21,7 @@ class TaskViewModel: ViewModel() {
         Outfit(R.drawable.longblackrightpart,R.drawable.longblackrightpartoverlay,"",""),Outfit(R.drawable.longbrownrightpart,R.drawable.longbrownrightpartoverlay,"",""),Outfit(R.drawable.longblonderightpart,R.drawable.longblonderightpartoverlay,"",""),Outfit(R.drawable.longgingerrightpart,R.drawable.longgingerrightpartoverlay,"",""),
         Outfit(R.drawable.blackpigtails,R.drawable.blackpigtailsoverlay,"",""),Outfit(R.drawable.brownpigtails,R.drawable.brownpigtailsoverlay,"",""),Outfit(R.drawable.blondepigtails,R.drawable.blondepigtailsoverlay,"",""),Outfit(R.drawable.gingerpigtails,R.drawable.gingerpigtailsoverlay,"",""),
         Outfit(R.drawable.longblackmiddlepart,R.drawable.longblackmiddlepartoverlay,"",""),Outfit(R.drawable.longbrownmiddlepart,R.drawable.longbrownmiddlepartoverlay,"",""),Outfit(R.drawable.longblondemiddlepart,R.drawable.longblondemiddlepartoverlay,"",""),Outfit(R.drawable.longgingermiddlepart,R.drawable.longgingermiddlepartoverlay,"",""),
-        Outfit(R.drawable.redcap,R.drawable.redcapoverlay,"greenHat","hat"),
+        Outfit(R.drawable.redcap,R.drawable.redcapoverlay,"redcap","hat"),
         Outfit(R.drawable.shirtone,R.drawable.shirtoverlayone,"magicShirt","shirt"),
         Outfit(R.drawable.jacketone,R.drawable.jacketoverlayone,"redJacket","jacket"),
         Outfit(R.drawable.pizzashirt,R.drawable.pizzashirtoverlay,"pizzashirt", "shirt"),
@@ -40,22 +40,22 @@ class TaskViewModel: ViewModel() {
         Achievement("Progress","Complete 20 Task",false,outfits[34], 20, false),
         Achievement("Rise and Grind", "Complete 5 Study Sessions", true, outfits[35],5,false),
         Achievement("Getting Good", "Complete 15 Study Sessions", true, outfits[36],15,false),
-        Achievement("A Star Student", "Complete 30 Study Sessions", false, outfits[37],30,false)))
+        Achievement("A Star Student", "Complete 30 Study Sessions", true, outfits[37],30,false)))
     val achievements: LiveData<List<Achievement>>
         get() = _achievements
 
     private val _taskAchievements: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
         Achievement("Getting Started","Complete 1 Task",true,outfits[32], 1, false),
         Achievement("It's a Start","Complete 10 Task",true,outfits[33], 10, false),
-        Achievement("Progress","Complete 20 Task",true,outfits[34], 20, false)))
-    private val taskAchievements: LiveData<List<Achievement>>
+        Achievement("Progress","Complete 20 Task",false,outfits[34], 20, false)))
+    val taskAchievements: LiveData<List<Achievement>>
         get() = _taskAchievements
 
     private val _studyAchievements: MutableLiveData<List<Achievement>> = MutableLiveData(listOf(
         Achievement("Rise and Grind", "Complete 5 Study Sessions", true, outfits[35],5,false),
         Achievement("Getting Good", "Complete 15 Study Sessions", true, outfits[36],15,false),
         Achievement("A Star Student", "Complete 30 Study Sessions", true, outfits[37],30,false)))
-    private val studyAchievements: LiveData<List<Achievement>>
+    val studyAchievements: LiveData<List<Achievement>>
         get() = _studyAchievements
 
     var completeTasks = 0
@@ -90,7 +90,7 @@ class TaskViewModel: ViewModel() {
             completeStudySession += num
             for(i in studyAchievements.value!!)
                 if(i.num<=completeStudySession&&!i.unlocked) {
-                    i.unlocked == true
+                    i.unlocked = true
                     unlockAchievement(i)
                 }
         }

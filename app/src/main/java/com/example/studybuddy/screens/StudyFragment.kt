@@ -78,7 +78,6 @@ class StudyFragment : Fragment() {
             viewModel.achievmentGet(false,number.toInt())
             dbRef = FirebaseDatabase.getInstance().getReference("Achievements")
             dbRef.child("Complete Sessions").setValue(viewModel.completeStudySession)
-            dbRef.child("Achieve").setValue(viewModel.achievements.value)
         }
         return rootView
     }

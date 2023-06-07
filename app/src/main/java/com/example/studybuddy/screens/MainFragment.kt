@@ -67,10 +67,6 @@ class MainFragment : Fragment() {
                 if(snapshot.exists()) {
                     viewModel.completeStudySession = snapshot.child("Complete Sessions").getValue<Int>()!!
                     viewModel.completeTasks = snapshot.child("Complete Tasks").getValue<Int>()!!
-                    val i = 0
-                    for(achievementSnapshot in snapshot.child("Achieve").getValue<List<Achievement>>()!!){
-                        viewModel.achievements.value?.get(i)?.unlocked  = achievementSnapshot.unlocked
-                    }
                 }
             }override fun onCancelled(error: DatabaseError) {}
         } )

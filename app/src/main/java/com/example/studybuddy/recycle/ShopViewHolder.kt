@@ -42,15 +42,15 @@ class ShopViewHolder(val binding: ListShopLayoutBinding, val viewModel: TaskView
         binding.dripthree.setImageResource(currentAchievementList[2].outfit.outfit)
         val grayscaleMatrix = ColorMatrix()
         grayscaleMatrix.setSaturation(0f)
-        if(!currentAchievementList[0].unlocked){
-            binding.dripone.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
-            binding.dripone.isClickable = false }
-        if(!currentAchievementList[1].unlocked){
-            binding.driptwo.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
-            binding.driptwo.isClickable = false }
         if(!currentAchievementList[2].unlocked){
             binding.dripthree.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
             binding.dripthree.isClickable = false }
+        else if(!currentAchievementList[1].unlocked){
+            binding.driptwo.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
+            binding.driptwo.isClickable = false }
+        else if(!currentAchievementList[0].unlocked){
+            binding.dripone.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
+            binding.dripone.isClickable = false }
         binding.nameone.text = currentAchievementList[0].name
         binding.nametwo.text = currentAchievementList[1].name
         binding.namethree.text = currentAchievementList[2].name

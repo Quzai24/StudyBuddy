@@ -15,7 +15,7 @@ const val titleExtra = "Title Extra"
 const val messageExtra = "Message Extra"
 
 
-class Notification: BroadcastReceiver() {
+class Notification(val name : String = ""): BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

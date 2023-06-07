@@ -59,5 +59,6 @@
         <item>Brown</item>
         <item>Blonde</item>
         <item>Ginger</item>
+        <item>None</item>
     </string-array>
 </resources>
